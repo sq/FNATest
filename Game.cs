@@ -26,7 +26,7 @@ namespace FNATest {
             base.LoadContent();
 
             // SB = new SpriteBatch(Graphics.GraphicsDevice);
-            Texture = Texture2D.FromStream(Graphics.GraphicsDevice, File.OpenRead("bunny.jpeg"));
+            Texture = Texture2D.FromStream(Graphics.GraphicsDevice, File.OpenRead(@"E:\Documents\Projects\FNATest\bunny.jpeg"));
 
             Materials = new DefaultMaterialSet(RenderCoordinator);
         }
