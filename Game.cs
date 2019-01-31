@@ -16,6 +16,8 @@ namespace FNATest {
         public TestGame () {
             Graphics = new GraphicsDeviceManager(this);
             Graphics.GraphicsProfile = GraphicsProfile.HiDef;
+            Graphics.PreferredBackBufferWidth = 1920;
+            Graphics.PreferredBackBufferHeight = 1080;
         }
 
         protected override void LoadContent () {
@@ -31,7 +33,9 @@ namespace FNATest {
             Graphics.GraphicsDevice.Clear(Color.SteelBlue);
 
             SB.Begin();
-            SB.Draw(Texture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 0.33f, SpriteEffects.None, 0f);
+            const float scale = 0.65f;
+            var pos = (new Vector2(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight) - (new Vector2(Texture.Width, Texture.Height) * scale)) / 2f;
+            SB.Draw(Texture, pos, null, Color.White, 0f, Vector2.One * 0.5f, scale, SpriteEffects.None, 0f);
             SB.End();
         }
     }
