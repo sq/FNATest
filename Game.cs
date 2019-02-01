@@ -53,7 +53,7 @@ namespace FNATest {
             };
             ir.Clear(color: Color.SteelBlue);
             const float scale = 0.65f;
-            var pos = (new Vector2(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight) - (new Vector2(Texture.Width, Texture.Height) * scale)) / 2f;
+            var pos = new Vector2(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight) / 2f;
             ir.Draw(
                 Texture, pos, origin: Vector2.One * 0.5f, scale: Vector2.One * scale,
                 blendState: BlendState.Opaque,
