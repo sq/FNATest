@@ -9,12 +9,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Squared.Render;
 using Squared.Render.Convenience;
+using Squared.Render.Text;
 
 namespace FNATest {
     public class TestGame : MultithreadedGame {
         public GraphicsDeviceManager Graphics;
         public DefaultMaterialSet Materials;
         public Texture2D Texture;
+        public FreeTypeFont Font;
 
         public TestGame () {
             Graphics = new GraphicsDeviceManager(this);
@@ -25,6 +27,11 @@ namespace FNATest {
 
         protected override void LoadContent () {
             base.LoadContent();
+
+            var provider = new EmbeddedFreeTypeFontProvider(RenderCoordinator);
+            Font = provider.Load("FiraSans-Medium");
+            Font.SizePoints = 20;
+            Font.GlyphMargin = 4;
 
             Texture = Texture2D.FromStream(Graphics.GraphicsDevice, Assembly.GetExecutingAssembly().GetManifestResourceStream("bunny"));
 
@@ -42,6 +49,11 @@ namespace FNATest {
                 Texture, pos, origin: Vector2.One * 0.5f, scale: Vector2.One * scale,
                 blendState: BlendState.Opaque,
                 samplerState: SamplerState.LinearClamp
+            );
+            ir.DrawString(
+                Font, "Hello, World!", Vector2.Zero, 
+                blendState: BlendState.AlphaBlend,
+                material: Materials.ScreenSpaceShadowedBitmap
             );
         }
     }

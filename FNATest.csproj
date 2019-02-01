@@ -65,6 +65,10 @@
       <Project>{36463aee-e309-43a6-bcfa-a69944390af0}</Project>
       <Name>Squared.Game</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fracture\Squared\Render.Freetype\Squared.Render.Freetype.csproj">
+      <Project>{cfb603c1-8371-460d-ba60-91e697eae1b3}</Project>
+      <Name>Squared.Render.Freetype</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fracture\Squared\RenderLib\Squared.Render.csproj">
       <Project>{fe871f18-fd35-4124-af8f-0021c9d4ba29}</Project>
       <Name>Squared.Render</Name>
@@ -88,7 +92,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="bunny.jpeg">
+    <EmbeddedResource Include="*.jpeg;*.otf">
       <LogicalName>%(Filename)</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
