@@ -3,7 +3,7 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{947BB64F-D0DC-4DCE-BE71-FE42E10F46B6}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -57,27 +57,27 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="E:\Documents\Projects\FNA\FNA.csproj">
+    <ProjectReference Include="..\FNA\FNA.csproj">
       <Project>{35253CE1-C864-4CD3-8249-4D1319748E8F}</Project>
       <Name>FNA</Name>
     </ProjectReference>
-    <ProjectReference Include="E:\Documents\Projects\Fracture\Squared\GameLib\Squared.Game.csproj">
+    <ProjectReference Include="..\Fracture\Squared\GameLib\Squared.Game.csproj">
       <Project>{36463aee-e309-43a6-bcfa-a69944390af0}</Project>
       <Name>Squared.Game</Name>
     </ProjectReference>
-    <ProjectReference Include="E:\Documents\Projects\Fracture\Squared\RenderLib\Squared.Render.csproj">
+    <ProjectReference Include="..\Fracture\Squared\RenderLib\Squared.Render.csproj">
       <Project>{fe871f18-fd35-4124-af8f-0021c9d4ba29}</Project>
       <Name>Squared.Render</Name>
     </ProjectReference>
-    <ProjectReference Include="E:\Documents\Projects\Fracture\Squared\TaskLib\Squared.Task.csproj">
+    <ProjectReference Include="..\Fracture\Squared\TaskLib\Squared.Task.csproj">
       <Project>{173abdca-7278-46ff-a300-d3bf8ccef181}</Project>
       <Name>Squared.Task</Name>
     </ProjectReference>
-    <ProjectReference Include="E:\Documents\Projects\Fracture\Squared\Threading\Squared.Threading.csproj">
+    <ProjectReference Include="..\Fracture\Squared\Threading\Squared.Threading.csproj">
       <Project>{eccb8787-0fc6-43b2-abd1-6cbb237916ec}</Project>
       <Name>Squared.Threading</Name>
     </ProjectReference>
-    <ProjectReference Include="E:\Documents\Projects\Fracture\Squared\Util\Squared.Util.csproj">
+    <ProjectReference Include="..\Fracture\Squared\Util\Squared.Util.csproj">
       <Project>{d7f549cf-e0a6-491c-a78c-ecab590bb2a7}</Project>
       <Name>Squared.Util</Name>
     </ProjectReference>
