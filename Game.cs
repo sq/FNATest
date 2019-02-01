@@ -25,32 +25,15 @@ namespace FNATest {
         protected override void LoadContent () {
             base.LoadContent();
 
-            // SB = new SpriteBatch(Graphics.GraphicsDevice);
             Texture = Texture2D.FromStream(Graphics.GraphicsDevice, File.OpenRead(@"E:\Documents\Projects\FNATest\bunny.jpeg"));
 
             Materials = new DefaultMaterialSet(RenderCoordinator) {
-                ViewTransform = ViewTransform.CreateOrthographic(1920, 1080)
+                ViewTransform = ViewTransform.CreateOrthographic(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight)
             };
         }
-
-        /*
-        protected override void Draw (GameTime gameTime) {
-            base.Draw(gameTime);
-
-            Graphics.GraphicsDevice.Clear(Color.SteelBlue);
-
-            SB.Begin();
-            const float scale = 0.65f;
-            var pos = (new Vector2(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight) - (new Vector2(Texture.Width, Texture.Height) * scale)) / 2f;
-            SB.Draw(Texture, pos, null, Color.White, 0f, Vector2.One * 0.5f, scale, SpriteEffects.None, 0f);
-            SB.End();
-        }
-        */
 
         public override void Draw (GameTime gameTime, Frame frame) {
-            var ir = new ImperativeRenderer(frame, Materials, rasterizerState: RasterizerState.CullNone, depthStencilState: DepthStencilState.None) {
-                AutoIncrementLayer = true
-            };
+            var ir = new ImperativeRenderer(frame, Materials);
             ir.Clear(color: Color.SteelBlue);
             const float scale = 0.65f;
             var pos = new Vector2(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight) / 2f;
