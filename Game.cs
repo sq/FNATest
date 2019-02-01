@@ -28,7 +28,9 @@ namespace FNATest {
             // SB = new SpriteBatch(Graphics.GraphicsDevice);
             Texture = Texture2D.FromStream(Graphics.GraphicsDevice, File.OpenRead(@"E:\Documents\Projects\FNATest\bunny.jpeg"));
 
-            Materials = new DefaultMaterialSet(RenderCoordinator);
+            Materials = new DefaultMaterialSet(RenderCoordinator) {
+                ViewTransform = ViewTransform.CreateOrthographic(1920, 1080)
+            };
         }
 
         /*
@@ -46,11 +48,17 @@ namespace FNATest {
         */
 
         public override void Draw (GameTime gameTime, Frame frame) {
-            var ir = new ImperativeRenderer(frame, Materials) { AutoIncrementLayer = true };
-            ir.Clear(color: Color.Transparent);
+            var ir = new ImperativeRenderer(frame, Materials, rasterizerState: RasterizerState.CullNone, depthStencilState: DepthStencilState.None) {
+                AutoIncrementLayer = true
+            };
+            ir.Clear(color: Color.SteelBlue);
             const float scale = 0.65f;
             var pos = (new Vector2(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight) - (new Vector2(Texture.Width, Texture.Height) * scale)) / 2f;
-            ir.Draw(Texture, pos, origin: Vector2.One * 0.5f, scale: Vector2.One * scale);
+            ir.Draw(
+                Texture, pos, origin: Vector2.One * 0.5f, scale: Vector2.One * scale,
+                blendState: BlendState.Opaque,
+                samplerState: SamplerState.LinearClamp
+            );
         }
     }
 }
