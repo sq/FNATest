@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
@@ -25,7 +26,7 @@ namespace FNATest {
         protected override void LoadContent () {
             base.LoadContent();
 
-            Texture = Texture2D.FromStream(Graphics.GraphicsDevice, File.OpenRead(@"E:\Documents\Projects\FNATest\bunny.jpeg"));
+            Texture = Texture2D.FromStream(Graphics.GraphicsDevice, Assembly.GetExecutingAssembly().GetManifestResourceStream("bunny"));
 
             Materials = new DefaultMaterialSet(RenderCoordinator) {
                 ViewTransform = ViewTransform.CreateOrthographic(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight)
