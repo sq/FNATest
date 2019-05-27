@@ -15,13 +15,13 @@ void vertexShader (
 }
 
 void pixelShader (
-    in  float2 vpos : VPOS,
+    in  float2 __vpos__ : VPOS,
     out float4 result : COLOR0
 ) {
-    result = float4(vpos.x / 1920, vpos.y / 1280, 0.5, 1);
+    result = float4(vpos.x / 1920, vpos.y / 1280, 0, 1);
 }
 
-technique vpos {
+technique vposShader {
     pass P0
     {
         vertexShader = compile vs_3_0 vertexShader();

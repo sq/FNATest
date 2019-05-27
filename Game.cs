@@ -66,7 +66,7 @@ namespace FNATest {
             }
 
             EffectProvider = new EmbeddedEffectProvider(RenderCoordinator);
-            Vpos = new Material(EffectProvider.Load("vpos"), "vpos");
+            Vpos = new Material(EffectProvider.Load("vpos"), "vposShader");
             Materials.Add(Vpos);
         }
 
@@ -93,12 +93,14 @@ namespace FNATest {
 
             var sg = ir.MakeSubgroup();
             sg.AutoIncrementLayer = true;
+            sg.SetViewport(new Rectangle(128, 128, 512, 512), true);
             sg.FillRectangle(new Rectangle(0, 0, 1024, 1024), Color.Black, customMaterial: Vpos);
             sg.SetViewport(null, true);
         }
 
         protected override void UnloadContent () {
-            Environment.Exit(1);
+            Process.GetCurrentProcess().Kill();
+            Environment.Exit(0);
         }
     }
 }
