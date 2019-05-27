@@ -18,6 +18,9 @@ namespace FNATest {
         public Texture2D Texture;
         public FreeTypeFont Font;
 
+        public EmbeddedEffectProvider EffectProvider;
+        public Material Vpos;
+
         public TestGame () {
             Graphics = new GraphicsDeviceManager(this);
             Graphics.PreparingDeviceSettings += (s, e) => {
@@ -26,6 +29,12 @@ namespace FNATest {
             Graphics.GraphicsProfile = GraphicsProfile.HiDef;
             Graphics.PreferredBackBufferWidth = 1920;
             Graphics.PreferredBackBufferHeight = 1080;
+
+#if XNA
+            Window.Title = "FNATest (XNA)";
+#else
+            Window.Title = "FNATest (FNA)";
+#endif
         }
 
         protected override void LoadContent () {
@@ -41,6 +50,10 @@ namespace FNATest {
             Materials = new DefaultMaterialSet(RenderCoordinator) {
                 ViewTransform = ViewTransform.CreateOrthographic(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight)
             };
+
+            EffectProvider = new EmbeddedEffectProvider(RenderCoordinator);
+            Vpos = new Material(EffectProvider.Load("vpos"), "vpos");
+            Materials.Add(Vpos);
         }
 
         public override void Draw (GameTime gameTime, Frame frame) {
@@ -63,8 +76,8 @@ namespace FNATest {
 
             var sg = ir.MakeSubgroup();
             sg.AutoIncrementLayer = true;
-            sg.SetViewport(new Rectangle(64, 64, 256, 256), true);
-            sg.FillRectangle(new Rectangle(0, 0, 512, 512), Color.Black);
+            // sg.SetViewport(new Rectangle(64, 64, 1024, 512), true);
+            sg.FillRectangle(new Rectangle(0, 0, 1024, 1024), Color.Black, customMaterial: Vpos);
             sg.SetViewport(null, true);
         }
     }
