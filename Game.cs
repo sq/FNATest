@@ -44,7 +44,9 @@ namespace FNATest {
         }
 
         public override void Draw (GameTime gameTime, Frame frame) {
-            var ir = new ImperativeRenderer(frame, Materials);
+            var ir = new ImperativeRenderer(frame, Materials) {
+                AutoIncrementLayer = true
+            };
             ir.Clear(color: Color.SteelBlue);
             const float scale = 0.65f;
             var pos = new Vector2(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight) / 2f;
@@ -59,14 +61,10 @@ namespace FNATest {
                 material: Materials.ScreenSpaceShadowedBitmap
             );
 
-            ir.Layer += 1;
-
             var sg = ir.MakeSubgroup();
+            sg.AutoIncrementLayer = true;
             sg.SetViewport(new Rectangle(64, 64, 256, 256), true);
-            sg.Layer += 1;
-            // Interestingly this does not produce a square
             sg.FillRectangle(new Rectangle(0, 0, 512, 512), Color.Black);
-            sg.Layer += 1;
             sg.SetViewport(null, true);
         }
     }
