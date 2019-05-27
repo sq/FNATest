@@ -16,6 +16,13 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'XNA'">
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <XnaPlatform>Windows</XnaPlatform>
+    <XnaProfile>HiDef</XnaProfile>
+    <XnaOutputType>Game</XnaOutputType>
+    <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -42,6 +49,15 @@
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'XNA'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\XNA\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;XNA</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,11 +72,18 @@
     <None Include="App.config" />
     <None Include="app.manifest" />
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' != 'XNA'">
     <ProjectReference Include="..\FNA\FNA.csproj">
       <Project>{35253CE1-C864-4CD3-8249-4D1319748E8F}</Project>
       <Name>FNA</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'XNA'">
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Fracture\Squared\GameLib\Squared.Game.csproj">
       <Project>{36463aee-e309-43a6-bcfa-a69944390af0}</Project>
       <Name>Squared.Game</Name>
@@ -86,13 +109,13 @@
       <Name>Squared.Util</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' != 'XNA'">
     <None Include="..\FNA\fnalibs\$(Platform)\*.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="*.jpeg;*.otf">
+    <EmbeddedResource Include="*.png;*.jpg;*.jpeg;*.otf;*.ttf">
       <LogicalName>%(Filename)</LogicalName>
     </EmbeddedResource>
   </ItemGroup>

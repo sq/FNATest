@@ -3,4 +3,5 @@ bin
 obj
 *.rdc
 *.cap
+.vs
 /packages

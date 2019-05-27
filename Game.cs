@@ -20,6 +20,9 @@ namespace FNATest {
 
         public TestGame () {
             Graphics = new GraphicsDeviceManager(this);
+            Graphics.PreparingDeviceSettings += (s, e) => {
+                e.GraphicsDeviceInformation.GraphicsProfile = GraphicsProfile.HiDef;
+            };
             Graphics.GraphicsProfile = GraphicsProfile.HiDef;
             Graphics.PreferredBackBufferWidth = 1920;
             Graphics.PreferredBackBufferHeight = 1080;
@@ -55,6 +58,16 @@ namespace FNATest {
                 blendState: BlendState.AlphaBlend,
                 material: Materials.ScreenSpaceShadowedBitmap
             );
+
+            ir.Layer += 1;
+
+            var sg = ir.MakeSubgroup();
+            sg.SetViewport(new Rectangle(64, 64, 256, 256), true);
+            sg.Layer += 1;
+            // Interestingly this does not produce a square
+            sg.FillRectangle(new Rectangle(0, 0, 512, 512), Color.Black);
+            sg.Layer += 1;
+            sg.SetViewport(null, true);
         }
     }
 }
