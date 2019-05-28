@@ -64,10 +64,10 @@
     <ShaderDirectory>shaders</ShaderDirectory>
     <IncludeFreetype>true</IncludeFreetype>
   </PropertyGroup>    
-  
-  <Import Project="..\Fracture\Squared\SquaredGameLibraries.targets" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\Fracture\Squared\XNAFramework.targets" />
+
+  <Import Project="$(SquaredPath)\Squared\SquaredGameLibraries.targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SquaredPath)\Squared\XNAFramework.targets" />
 
   <PropertyGroup>
     <PreBuildEvent><!-- thanks xna -->
