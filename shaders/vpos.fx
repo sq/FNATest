@@ -1,4 +1,5 @@
 #include "..\..\Fracture\Squared\RenderLib\Shaders\ViewTransformCommon.fxh"
+#include "..\..\Fracture\Squared\RenderLib\Shaders\TargetInfo.fxh"
 
 float4 TransformPosition (float4 position) {
     float4 modelViewPos = mul(position, GetViewportModelViewMatrix());
@@ -15,9 +16,10 @@ void vertexShader (
 }
 
 void pixelShader (
-    in  float2 __vpos__ : VPOS,
+    ACCEPTS_VPOS,
     out float4 result : COLOR0
 ) {
+    float2 vpos = GET_VPOS;
     result = float4(vpos.x / 1920, vpos.y / 1280, 0, 1);
 }
 
